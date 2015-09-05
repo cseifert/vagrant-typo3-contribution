@@ -23,7 +23,16 @@ gerrit_name = "YOUR FIRSTNAME AND LASTNAME"
 gerrit_email = "YOUR EMAIL"
 ```
 
-Now, you can copy your private and public ssh key into the folder "ssh-keys". They will automatically be uploaded to the vagrants home ssh folder during installation. Nevertheless you can add the ssh key later or generate a new one by ssh-keygen. If you like to learn more about the account settings or the ssh key requirements, you can read the [Contribution Walkthrough Environment Setup Wiki](https://wiki.typo3.org/Contribution_Walkthrough_Environment_Setup).
+Now, you can copy your private and public ssh key into the folder "ssh-keys". They will automatically be uploaded to the vagrants home ssh folder during installation. 
+To register the keys, log into Vagrant per SSH and enter the following commans in the shell:
+```sh
+chmod 600 ~/.ssh/id_rsa*
+chmod 600 ~/.ssh/authorized_keys
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+```
+Nevertheless you can add the ssh key later or generate a new one by ssh-keygen. 
+If you like to learn more about the account settings or the ssh key requirements, you can read the [Contribution Walkthrough Environment Setup Wiki](https://wiki.typo3.org/Contribution_Walkthrough_Environment_Setup).
 At last, please open your prompt, switch to the downloaded folder and start the installation by
 ```sh
 $ vagrant up

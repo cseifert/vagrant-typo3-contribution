@@ -89,6 +89,10 @@ sudo apt-get install -q -y --force-yes npm
 sudo npm install bower grunt grunt-cli -g
 
 ### GIT setup ###
+sudo mv /tmp/ssh_config.conf /home/vagrant/.ssh/config
+sudo sed -i "s/USERNAME/$3/" /home/vagrant/.ssh/config
+sudo chmod 600 ~/.ssh/id_rsa*
+sudo chmod 600 ~/.ssh/authorized_keys
 cd /var/www
 sudo git clone --recursive git://git.typo3.org/Packages/TYPO3.CMS.git TYPO3.CMS
 cd TYPO3.CMS

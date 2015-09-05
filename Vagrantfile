@@ -19,7 +19,7 @@ Vagrant.configure(vagrantfile_api_version) do |config|
   config.vm.hostname = server_name
   config.vm.network :private_network, ip: server_ip
 
-  config.vm.synced_folder "./www", "/var/www", {:mount_options => ['dmode=777','fmode=777'], :create => true, :owner => 'vagrant', :group => 'vagrant'}
+  config.vm.synced_folder "./www", "/var/www", {:mount_options => ['dmode=777','fmode=777'], :owner => 'vagrant', :group => 'vagrant'}
 
   config.vm.provider :virtualbox do |vb|
     vb.name = server_name
@@ -42,11 +42,13 @@ Vagrant.configure(vagrantfile_api_version) do |config|
   config.ssh.insert_key = "true"
 
   config.vm.provision "file", source: "./setup/typo3.nginx.conf", destination: "/tmp/typo3.conf"
-  
+  config.vm.provision "file", source: "./setup/ssh_config.conf", destination: "/tmp/ssh_config.conf"
+  config.vm.provision "file", source: "./setup/known_hosts", destination: "/home/vagrant/.ssh/known_hosts"
+
   # don't forget to add your own key files to "ssh-keys"
   config.vm.provision "file", source: "./ssh-keys/id_rsa", destination: "/home/vagrant/.ssh/id_rsa"
   config.vm.provision "file", source: "./ssh-keys/id_rsa.pub", destination: "/home/vagrant/.ssh/id_rsa.pub"
-  
+
   # execute the provisioner script to set up the machine
   config.vm.provision "shell", path: "./setup/provision.sh", args: "#{server_ip} #{server_name} '#{gerrit_username}' '#{gerrit_name}' '#{gerrit_email}'"
 end
