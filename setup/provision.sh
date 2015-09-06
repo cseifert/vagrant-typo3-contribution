@@ -24,6 +24,7 @@ sudo apt-get install -q -y --force-yes php5-gd
 sudo apt-get install -q -y --force-yes php5-gmp
 sudo apt-get install -q -y --force-yes php5-mcrypt
 sudo apt-get install -q -y --force-yes php5-intl
+sudo apt-get install -q -y --force-yes php5-xdebug
 
 sudo sed -i "s/listen =.*/listen = /var/run/php5-fpm.sock/" /etc/php5/fpm/pool.d/www.conf
 sudo sed -i "s/;listen.allowed_clients/listen.allowed_clients/" /etc/php5/fpm/pool.d/www.conf
@@ -40,6 +41,18 @@ sudo sed -i "s/upload_max_filesize = .*/upload_max_filesize = 2G/" /etc/php5/fpm
 sudo sed -i "s/post_max_size = .*/post_max_size = 2G/" /etc/php5/fpm/php.ini
 sudo sed -i "s/max_execution_time = .*/max_execution_time = 240/" /etc/php5/fpm/php.ini
 sudo sed -i "s/; max_input_vars = .*/max_input_vars = 1500/" /etc/php5/fpm/php.ini
+
+sudo chown vagrant /etc/php5/mods-available/xdebug.ini
+sudo chgrp vagrant /etc/php5/mods-available/xdebug.ini
+sudo cat << EOF >> /etc/php5/mods-available/xdebug.ini
+xdebug.remote_enable = on
+xdebug.remote_host=10.0.2.2
+xdebug.remote_autostart = 1
+xdebug.remote_log="/var/log/xdebug/remote.log"
+xdebug.profiler_output_dir="/var/log/xdebug"
+xdebug.trace_output_dir="/var/log/xdebug"
+xdebug.max_nesting_level=400
+EOF
 
 sudo service php5-fpm restart
 

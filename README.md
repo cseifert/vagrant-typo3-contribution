@@ -3,11 +3,11 @@ The repository contains configurations for Vagrant to setup up a development env
 
 ## Installed software within the VM
 The environment comes with:
-  - Ubuntu 14
+  - Ubuntu 14 LTS
   - nginx
-  - PHP 5.5 (PHP-FPM)
+  - PHP 5.5 (PHP-FPM, Xdebug)
   - MariaDB
-  - Composer, NPM, Bower, Grunt, GraphicsMagick
+  - Composer, Git, NPM, Bower, Grunt, GraphicsMagick
   - MailCatcher
   - phpMyAdmin
 
@@ -42,11 +42,16 @@ After successfull installation, the following URLs should be available:
   - http://typo3cms/ (unless you didn't change the server_name variable)
   - http://typo3cms:1080/ (MailCatcher)
   - http://typo3cms/phpmyadmin/ (PhpMyAdmin)
+  
+## Xdebug
+You can use Xdebug remotely by port 9000 without setting it up locally.
 
 ### VM IP
 Unless you didn't change the server_ip variable, the VM is available under 192.168.10.10.
+
 ### SSH access
 You can log into the machine by SSH. The account is called "vagrant" and has the password "vagrant".
+
 ### MariaDB
 The admin user is named "root" and has the password "root".
 

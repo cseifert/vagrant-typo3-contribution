@@ -14,12 +14,12 @@ gerrit_name = "YOUR FIRSTNAME AND LASTNAME"
 gerrit_email = "YOUR EMAIL"
 
 Vagrant.configure(vagrantfile_api_version) do |config|
-
   config.vm.box = "ubuntu/trusty64"
   config.vm.hostname = server_name
   config.vm.network :private_network, ip: server_ip
 
-  config.vm.synced_folder "./www", "/var/www", {:mount_options => ['dmode=777','fmode=777'], :owner => 'vagrant', :group => 'vagrant'}
+  config.vm.synced_folder "./www", "/var/www", {:mount_options => ['dmode=777','fmode=777'], :create => true, :owner => 'vagrant', :group => 'vagrant'}
+  config.vm.synced_folder "./xdebug", "/var/log/xdebug", {:mount_options => ['dmode=777','fmode=777'], :create => true, :owner => 'vagrant', :group => 'vagrant'}
 
   config.vm.provider :virtualbox do |vb|
     vb.name = server_name
@@ -27,6 +27,7 @@ Vagrant.configure(vagrantfile_api_version) do |config|
     vb.customize ["guestproperty", "set", :id, "/VirtualBox/GuestAdd/VBoxService/--timesync-set-threshold", 10000]
 	vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
 	vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/var/www", "1"]
+	vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/var/log/xdebug", "1"]
   end
 
   if Vagrant.has_plugin?("vagrant-hostmanager")
