@@ -98,7 +98,8 @@ sudo gem install mailcatcher
 sudo mailcatcher --ip $1
 
 ### NPM, Bower, Grunt
-sudo apt-get install -q -y --force-yes npm
+sudo apt-get install -q -y --force-yes nodejs npm
+sudo ln -s /usr/bin/nodejs /usr/bin/node
 sudo npm install bower grunt grunt-cli -g
 
 ### GIT setup ###
