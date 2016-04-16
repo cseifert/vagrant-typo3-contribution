@@ -5,8 +5,8 @@ The repository contains configurations for Vagrant to setup up a development env
 The environment comes with:
   - Ubuntu 14 LTS
   - nginx
-  - PHP 5.5 (PHP-FPM, Xdebug)
-  - MariaDB
+  - PHP 7 (PHP-FPM, Xdebug)
+  - MariaDB 5.5
   - Composer, Git, NPM, Bower, Grunt, GraphicsMagick
   - MailCatcher
   - phpMyAdmin
@@ -59,4 +59,4 @@ The admin user is named "root" and has the password "root".
 The Vagrant configuration was tested on Windows with VirtualBox. Other OS or VMWare has not been tried so far.
 
 ## Feedback
-This repository and the vagrant file is very new and I welcome your feedback for optimization. Just give me a note if it helped you or if there are problems you discovered. The configuration was tested on Windows.
+This repository and the vagrant file is still in progress and I welcome your feedback for optimization. Just give me a note if it helped you or if there are problems you discovered. The configuration was tested on Windows.
