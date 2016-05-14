@@ -1,4 +1,5 @@
 add-apt-repository -y ppa:ondrej/php
+apt-add-repository -y ppa:brightbox/ruby-ng
 apt-get update && apt-get -y upgrade
 
 # load German locale
